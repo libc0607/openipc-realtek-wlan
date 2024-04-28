@@ -4,4 +4,3 @@ config RTL8733BU
 	---help---
 	  Realtek RTL8733BU chipset driver
 	  802.11ac USB wireless network adapter
-
