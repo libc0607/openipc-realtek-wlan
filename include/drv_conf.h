@@ -454,10 +454,6 @@
 	#define CONFIG_TXPWR_LIMIT 1
 #endif
 
-#ifndef CONFIG_RTW_REGD_SRC
-#define CONFIG_RTW_REGD_SRC 1 /* 0:RTK_PRIV, 1:OS */
-#endif
-
 #define CONFIG_IOCTL_WEXT
 
 #ifdef CONFIG_RTW_IPCAM_APPLICATION

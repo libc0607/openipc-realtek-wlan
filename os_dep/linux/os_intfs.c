@@ -360,7 +360,7 @@ module_param(rtw_tx_nss, int, 0644);
 module_param(rtw_rx_nss, int, 0644);
 
 #ifdef CONFIG_REGD_SRC_FROM_OS
-static uint rtw_regd_src = CONFIG_RTW_REGD_SRC;
+static uint rtw_regd_src = 0;
 module_param(rtw_regd_src, uint, 0644);
 MODULE_PARM_DESC(rtw_regd_src, "The default regd source selection, 0:Realtek defined, 1: OS");
 #endif
