@@ -19,7 +19,7 @@ Tested:
  - Monitor (RX): Good for most cases (see below) 
  - TX power unlocked by ```iw```: supported, validated by my SDR receiver. Should set ```rtw_tx_pwr_by_rate=0 rtw_tx_pwr_lmt_enable=0``` when ```insmod```
  - Set Wi-Fi regd in OS: Set ```rtw_regd_src=1``` when ```insmod```
- - 5MHz/10MHz Injection: Seems good, see narrowband_8733b.sh 
+ - 5MHz/10MHz Injection: Seems good, set to 20MHz channel first, then ```echo <5/10> > /proc/net/rtl8733bu/<wlan0>/narrowband```
  - Unlock center frequency: All frequencies between 5080MHz ~ 6030MHz (5MHz step) in 5GHz band. They really cost-downed it too much
  - Temperature readout: working, see ```thermal_state``` in procfs
  - dkms install
