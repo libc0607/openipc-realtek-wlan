@@ -5469,6 +5469,66 @@ static int proc_get_thermal_state(struct seq_file *m, void *v)
         return 0;
 }
 
+static ssize_t proc_set_narrowband(struct file *file, const char __user *buffer, size_t count, loff_t *pos, void *data)
+{
+	struct net_device *dev = data;
+	_adapter *padapter = (_adapter *)rtw_netdev_priv(dev);
+	struct registry_priv *pregpriv = &padapter->registrypriv;
+	HAL_DATA_TYPE *pHalData = GET_HAL_DATA(padapter);
+	char tmp[32];
+	u32 nbw;
+
+	if (!padapter)
+		return -EFAULT;
+
+	if (count < 1) {
+		RTW_INFO("Set narrowband argument error. \n");
+		return -EFAULT;
+	}
+
+	if (count > sizeof(tmp)) {
+		rtw_warn_on(1);
+		return -EFAULT;
+	}
+
+	if (buffer && !copy_from_user(tmp, buffer, count)) {
+		int num = sscanf(tmp, "%u", &nbw);
+		if (num < 1)
+			return count;
+	}
+
+	if ( !((nbw == 5) || (nbw == 10) || (nbw == 20)) ) {
+		RTW_INFO("Set narrowband argument range error. \n");
+		return -EFAULT;
+	}
+
+	RTW_INFO("Set narrowband : %d\n", nbw);
+
+	switch (nbw) {
+	case 5:
+		phy_set_bb_reg(padapter, 0x9b0, 0xc0, 0x1);
+		phy_set_bb_reg(padapter, 0x9b4, 0x700, 0x1);
+		phy_set_bb_reg(padapter, 0x9f0, 0xf, 0xa);
+		phy_set_bb_reg(padapter, 0x81c, 0xf, 0x0);
+		break;
+	case 10:
+		phy_set_bb_reg(padapter, 0x9b0, 0xc0, 0x2);
+		phy_set_bb_reg(padapter, 0x9b4, 0x700, 0x2);
+		phy_set_bb_reg(padapter, 0x9f0, 0xf, 0xb);
+		phy_set_bb_reg(padapter, 0x81c, 0xf, 0x0);
+		break;
+	case 20:
+	default:
+		phy_set_bb_reg(padapter, 0x9b0, 0xc0, 0x0);
+		phy_set_bb_reg(padapter, 0x9b4, 0x700, 0x3);
+		phy_set_bb_reg(padapter, 0x9f0, 0xf, 0xc);
+		phy_set_bb_reg(padapter, 0x81c, 0xf, 0x9);
+		break;
+	}
+
+	return count;
+}
+
 
 /*
 * rtw_adapter_proc:
@@ -5476,6 +5536,7 @@ static int proc_get_thermal_state(struct seq_file *m, void *v)
 */
 const struct rtw_proc_hdl adapter_proc_hdls[] = {
         RTW_PROC_HDL_SSEQ("thermal_state", proc_get_thermal_state, proc_set_thermal_state),
+        RTW_PROC_HDL_SSEQ("narrowband", NULL, proc_set_narrowband),
 #if RTW_SEQ_FILE_TEST
 	RTW_PROC_HDL_SEQ("seq_file_test", &seq_file_test, NULL),
 #endif
