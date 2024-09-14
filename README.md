@@ -3,6 +3,8 @@ RTL8731BU & RTL8733BU Linux driver, mainly modified for FPV.
 This repository will be my playground (mainly for dirty low-level hacks. so, no performance guarantee in this repo).  
 OpenIPC had already added this driver, see [OpenIPC/realtek-wlan](https://github.com/OpenIPC/realtek-wlan/tree/rtl8733bu_fpv).  
 
+Download pre-built OpenIPC firmware with this driver integrated [here](https://github.com/libc0607/openipc-firmware/releases/tag/latest) to help test new features.  
+
 Check out the original driver tarball from the module vendors at [here](https://github.com/libc0607/rtl8733bu-20230626/blob/c42db387516b28bbd1fde8dca9b57788c046fcd0/RTL8733BU_WiFi_linux_v5.13.0.1-112-g10248f4f3_COEX20230616-330e.20230703.tar.gz).   
 Android 4~12 driver is included also, but I have no idea how to use them.   
 
