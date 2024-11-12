@@ -17,7 +17,7 @@ Suitable for FPV beginners, or any **ultra-small size** all-in-one digital video
 Tested:
  - Build on kernel 6.8
  - OpenIPC integration
- - Packet injection: Good, legacy/MCS rates work well, LDPC encoding works too  
+ - Packet injection: Good, legacy/MCS rates work well, LDPC encoding works too (in most cases, see "known bugs" below)  
  - Monitor (RX): Good for most cases (see below) 
  - TX power unlocked by ```iw```: supported, validated by my SDR receiver. Should set ```rtw_tx_pwr_by_rate=0 rtw_tx_pwr_lmt_enable=0``` when ```insmod```
  - Set Wi-Fi regd in OS: Set ```rtw_regd_src=1``` when ```insmod```
@@ -33,4 +33,5 @@ Need test or can be further investigated:
 
 Known bugs/issues:
  -  Monitor RX can not decode any LDPC-encoded packet in any bandwidth. Maybe it's a firmware bug
+ -  Injecting LDPC-encoded packets is not working well. In most cases, it works, but only when injecting with certain MCS & packet length combinations, the packet does not go into the air. It could be some firmware or silicon bug. If it's not working, you can -- a. slightly change the packet length, b. change MCS, or c. just disable the LDPC
  -  No narrowband AP/STA support (needs additional firmware)
