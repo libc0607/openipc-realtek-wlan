@@ -32,6 +32,6 @@ Need test or can be further investigated:
  - \~4k Maximum MTU: merged, not tested yet
 
 Known bugs/issues:
- -  Monitor RX can not decode any LDPC-encoded packet in any bandwidth. Maybe it's a firmware bug
+ -  Monitor RX can not decode any LDPC-encoded packet in any bandwidth. **873xb does not support LDPC RX** (hard-coded [here](https://github.com/libc0607/rtl8733bu-20230626/blob/40d5fb8f51d441f77ff66d33ec8ad2dbe60715c0/hal/rtl8733b/rtl8733b_ops.c#L3218)).
  -  Injecting LDPC-encoded packets is not working well. In most cases, it works, but only when injecting with certain MCS & packet length combinations, the packet does not go into the air. It could be some firmware or silicon bug. If it's not working, you can -- a. slightly change the packet length, b. change MCS, or c. just disable the LDPC
  -  No narrowband AP/STA support (needs additional firmware)
