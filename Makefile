@@ -18,6 +18,10 @@ EXTRA_CFLAGS += -Wno-uninitialized
 # Let the OS decide the regd instead of phy "self-managed"
 EXTRA_CFLAGS += -DCONFIG_REGD_SRC_FROM_OS
 
+# ACS
+EXTRA_CFLAGS += -DCONFIG_RTW_ACS
+EXTRA_CFLAGS += -DCONFIG_RTW_ACS_DBG
+
 ############ ANDROID COMMON KERNEL ############
 # clang
 ifeq ($(CC), clang)
