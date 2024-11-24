@@ -25,6 +25,7 @@ Tested:
  - Unlock center frequency: All frequencies between 5080MHz ~ 6030MHz (5MHz step) in 5GHz band. They really cost-downed it too much
  - Temperature readout: working, see ```thermal_state``` in procfs
  - dkms install
+ - Channel state scanning (ACS) -- see [here](https://github.com/libc0607/rtl88x2eu-20230815?tab=readme-ov-file#noise-monitor-acs) for usage 
 
 Need test or can be further investigated:
  - EDCCA Threshold: merged, not tested yet  
