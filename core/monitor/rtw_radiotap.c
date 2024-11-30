@@ -199,7 +199,7 @@ sint rtw_fill_radiotap_hdr(_adapter *padapter, struct rx_pkt_attrib *a, u8 *buf)
 	/* each antenna information */
 	rx_cnt = rf_type_to_rf_rx_cnt(pHalData->rf_type);
 #if 1
-	if (rx_cnt > 1) {
+	if (rx_cnt >= 1) {
 		rtap_hdr->it_present |= BIT(IEEE80211_RADIOTAP_RADIOTAP_NAMESPACE) |
 		BIT(IEEE80211_RADIOTAP_EXT);
 
@@ -559,7 +559,7 @@ sint rtw_fill_radiotap_hdr(_adapter *padapter, struct rx_pkt_attrib *a, u8 *buf)
 
 	/* each antenna information */
 #if 1
-	if (rx_cnt > 1) {
+	if (rx_cnt >= 1) {
 		for (i = 0; i <= rx_cnt; i++) {
 			/* dBm Antenna Signal */
 			hdr_buf[rt_len] = a->phy_info.rx_pwr[i];
